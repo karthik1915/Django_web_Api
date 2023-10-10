@@ -1,0 +1,18 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+body {
+  font-family: Poppins !important;
+}
+kbd {
+  color: aqua !important;
+  background: rebeccapurple !important;
+}
+.codesection {
+  background: #ba6bc80f;
+}
+footer a {
+  text-decoration: none;
+  color :aliceblue;
+}

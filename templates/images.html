@@ -1,0 +1,107 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="mb-5">
+  <h1>Requests:</h1>
+  view the json here:
+  <div class="list-group m-3">
+    <a class="list-group-item list-group-item-action" href="/api/images.json">api</a>
+    <a class="list-group-item list-group-item-action"  href="/api/images/random">random</a>
+  </div>
+</div>
+
+<h1>Documentation :</h1>
+<br />
+<h2>Endpoints</h2>
+
+<table class="table table-hover mb-5">
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">url</th>
+      <th scope="col">function  (json response)</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row">1</th>
+      <td><kbd>/images</kbd></td>
+      <td>Returns images</td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td><kbd>/images/random</kbd></td>
+      <td>Returns random Image</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<h2>Queries</h2>
+<p>This section contains Documentation of the images api</p>
+<table class="table table-hover mb-5">
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">url</th>
+      <th scope="col">function (json response)</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row">1</th>
+      <td><kbd>/images?category = anime</kbd></td>
+      <td>Returns anime pictures</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td><kbd>/images?category = marvel</kbd></td>
+      <td>Returns Marvel Images</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div class="mt-5 container-fluid">
+  <h1>Response Content</h1>
+  <h3>sample Random</h3>
+  <p> This is the response from the images random endpoint</p>
+  <p>
+    All images in gallery is 
+    <a class="link-offset-3 link-info" href="/api/images/gallery">here 🫶 </a>
+  <p>
+  {% if not api_response %}
+    <h1>{{status_code}}</h1>
+  {% else %}
+    
+  {% for item in api_response %}
+    <div class="card mb-3" style="max-width: 540px">
+      <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="{{ item.image_url }}"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text text-secondary">
+            {{item.description}}
+          </p>
+          <small class="text-body-secondary"
+            >Category : {{item.category}}</small
+          >
+          {% for tags in item.tags %}
+          <span class="badge bg-success">{{tags}}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+
+
+
+{% endblock content %}

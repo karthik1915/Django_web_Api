@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This website is running in PYTHON" />
+    <meta name="keywords" content="django", />
+    <meta name="author" content="Karthikeyan" />
+    <title>My Django API</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/restapi.png' %}"
+    />
+
+    {% comment %} important cdns {% endcomment %}
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+    />
+    {% comment %} end of cdns {% endcomment %}
+  </head>
+  <body>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded&family=Krona+One&family=Poppins&family=Zen+Dots&display=swap');
+      body {
+        font-family: Encode Sans Expanded !important;
+      }
+      h1, h2, h3, h4 {
+        font-family: Zen Dots, sans-serif;
+      }
+      kbd {
+        color: aqua !important;
+        background: rebeccapurple !important;
+      }
+      .codesection {
+        background: #ba6bc80f;
+      }
+      footer a {
+        text-decoration: none;
+        color :aliceblue;
+      }
+    </style>
+
+    <header
+      class="align-items-center border-bottom container-fluid p-3 mb-3 d-flex flex-row justify-content-between"
+    >
+      <h2>{{title}}</h2>
+      <div>
+        <a class="text-decoration-none" href="/api">home</a>&emsp;
+        <a class="text-decoration-none" href="/api/images">images</a>&emsp;
+        <a class="text-decoration-none" href="/api/postsapi/">posts</a>&emsp;
+        <a class="text-decoration-none" href="/admin">admin</a>
+      </div>
+    </header>
+    <div class="container-lg">
+      <div>{% block content %}{% endblock content %}</div>
+    </div>
+    <footer
+      class="d-flex w-100 mt-5 pt-5 px-3 pb-5 border border-secondary-subtle"
+    >
+      <div class="d-flex flex-column container w-50 p-3">
+        <a href="https://www.djangoproject.com">Django</a>
+        <a href="https://fonts.google.com/specimen/Poppins?query=poppins">Fonts</a>
+        <a href="https://getbootstrap.com">Bootstrap</a>
+      </div>
+      <div class="container w-50 text-end p-3 d-flex flex-column ">        
+        <a href="https://github.com/karthik1915">Github</a>
+        <a href="/contact">Contact</a>
+        <a href="/">About</a>
+      </div>
+    </footer>
+    {# important scripts #}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    {#end of important scripts #}
+  </body>
+</html>
