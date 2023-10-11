@@ -59,3 +59,17 @@ class RandomImageView(generics.ListAPIView):
         else:
             return []
 
+def ImagesGallery(request):
+    url = "http://127.0.0.1:8000/api/images.json?is_safe=true"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        api_data = response.json()
+        context = {"title":"Images" , "api_response": api_data, "status_code": response.status_code}
+        return render(request, "gallery.html", context)
+    else:
+        context = {
+            "api_response": False,
+            "status_code": response.status_code,
+        }
+        return render(request, "gallery.html", context)
