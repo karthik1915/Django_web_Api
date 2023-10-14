@@ -1,15 +1,23 @@
-import random , requests
-from django.shortcuts import HttpResponse,render
+import random , requests 
+from bs4 import BeautifulSoup
+from django.shortcuts import render ,redirect
 from rest_framework import generics
 from .models import ImagesModel
 from .serializers import ImagesModelSerializer
-from rest_framework.response import Response
+from .forms import UploadImage
 
 def IndexView(request):
-    return(HttpResponse("hello <a href='api'>api</a>"))
+    return render(request,'main_index.html')
 
 def ApiView(request):
-    return render(request, 'base.html')
+    context = {"title":"API"}
+    return render(request, 'base.html',context=context)
+
+def AboutView(request):
+    return render(request,'about.html')
+
+def ContactView(request):
+    return render(request,'contact.html')
 
 #
 # Images Views
@@ -60,7 +68,7 @@ class RandomImageView(generics.ListAPIView):
             return []
 
 def ImagesGallery(request):
-    url = "http://127.0.0.1:8000/api/images.json?is_safe=true"
+    url = "http://127.0.0.1:8000/api/images.json"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -73,3 +81,54 @@ def ImagesGallery(request):
             "status_code": response.status_code,
         }
         return render(request, "gallery.html", context)
+
+def createimage(request):
+    if request.POST:
+        form = UploadImage(request.POST, request.FILES)
+        if form.is_valid():
+            tags_input = form.cleaned_data['tags']
+            tags_set = set(tags_input.split(',')) 
+            tags_list = list(tags_set)
+            model_instance = form.save(commit=False)
+            model_instance.tags = tags_list
+            model_instance.save()
+            return redirect("/api/images/gallery")
+    return render(request, 'upload.html', {'form': UploadImage})
+
+#
+#   scraps 
+#
+
+def scraps_view(request):
+    return render(request, 'scraps.html')
+
+def getgelbooru(request):
+    url = 'https://gelbooru.com/index.php?page=post&s=list&tags=all'
+    response = requests.get(url)
+    if response.status_code == 200:
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+    else:
+        print(f"Failed to retrieve the web page (Status Code: {response.status_code})")
+
+    article = soup.find_all("article")
+    context = []
+    src,title_list=[],[]
+
+    for item in article:
+        img = item.find('img')
+        src.append(img.get('src'))
+        title_list.append(img.get('title'))
+    
+    for i in range(0,len(src)):
+        sub_context = {"image": src[i] , "category":title_list[i]}
+        context.append(sub_context)
+
+    data_dict = {index: item for index, item in enumerate(context, start=1)}
+
+
+    apiresponse = {
+        "api_response": data_dict,
+    }
+
+    return render(request, "gelbooru.html" ,apiresponse)

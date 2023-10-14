@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="This website is running in PYTHON" />
+    <meta name="keywords" content="django", />
+    <meta name="author" content="Karthikeyan" />
+    <title>My Django API</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/api_icon.png' %}"
+    />
+
+    {% comment %} bulma cdns {% endcomment %}
+    <link rel="stylesheet"
+     href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css"
+    href="{%static 'css/styles.css'%}" />
+    {% comment %} end of cdns {% endcomment %}
+  </head>
+  <body>
+    <div class="container-lg">
+      <header>
+        <div>
+            Web Scraps
+        </div>    
+        <nav>
+            <a href="/">home</a>
+            <a href="/about">about</a>
+            <a href="/contact">contact</a>
+            <a href="/admin">admin</a>
+        </nav>
+      </header>
+      <div>{% block content %}{% endblock content %}</div>
+    </div>
+  </body>
+
+</html>

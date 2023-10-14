@@ -20,9 +20,47 @@
     {% comment %} end of cdns {% endcomment %}
   </head>
   <body>
-    <div class="container">
+    <div class="container m-5">
       {{title}}
-      <a href="/api">APIs</a>
+      <div class="card w-100 text-center mb-3" style="max-width:500px">
+        <div class="card-header">
+          Featured ✨
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">APIs</h5>
+          <p class="card-text">various api contents and its documentaions including gallery with Bootstrap 👢 css framework</p>
+          <a href="/api" class="btn btn-primary">Explore 🔍</a>
+        </div>
+        <div class="card-footer italic text-body-secondary">
+          🗞 lastest
+        </div>
+      </div>
+      <div class="card w-100 text-center mb-3" style="max-width:500px">
+        <div class="card-header">
+          Featured ✨
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Web Scrapping 🛠️</h5>
+          <p class="card-text">web scrapping from various sites using python's beautiful soup 🍲 module and bluma css framework</p>
+          <a href="/scraps" class="btn btn-primary">Explore 🔍</a>
+        </div>
+        <div class="card-footer italic text-body-secondary">
+          ⛏ Mine  
+        </div>
+      </div>
+      <div class="card w-100 text-center mb-3" style="max-width:500px">
+        <div class="card-header">
+          Not Featured 👀
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Admin Panel</h5>
+          <p class="card-text">This link contains admin panel in it and its not accessible</p>
+          <a href="/admin" class="btn btn-success">Explore 🔒</a>
+        </div>
+        <div class="card-footer italic text-body-secondary">
+          Always same 🔐
+        </div>
+      </div>
     </div>
 
     {% comment %} important scripts {% endcomment %}

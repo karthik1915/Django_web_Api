@@ -1,22 +1,33 @@
 {% extends "base.html" %} {% block content %}
 
-<h1>Images Gallery</h1>
+<h1 class="">G a l l e r<button class="btn btn-transparent d-inline fs-2" id="toggleButton">Y</button></h1>
 
-{% for image in api_response %}
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{image.image_url}}" class="img-fluid rounded-start" alt="{{image.title}}">
+
+
+<div class="container-fluid">
+  <div class="row safe-content">
+  {% for image in api_response %}
+    {% if image.is_safe %}
+    <div class="" style="width:300px">
+        <a href="">
+          <img class="img-thumbnail img-fluid" src="{{image.image_url}}" alt="image">
+        </a>  
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{image.title}}</h5>
-          <p class="card-text">{{image.description}}<p>
-          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
+    {% endif %}
+  {% endfor %}
   </div>
-{% endfor %}
 
+  <div class="row not-safe-content hidden" >
+    {% for image in api_response %}
+      {% if not image.is_safe %}
+      <div class="" style="width:300px">
+          <a href="">
+            <img class="img-thumbnail img-fluid" src="{{image.image_url}}" alt="image">
+          </a>  
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+
+</div>
 {% endblock content %}

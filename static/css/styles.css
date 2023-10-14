@@ -1,18 +1,34 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded&family=Krona+One&family=Poppins&family=Zen+Dots&display=swap');
 body {
-  font-family: Poppins !important;
+  font-family: Encode Sans Expanded !important;
 }
-kbd {
-  color: aqua !important;
-  background: rebeccapurple !important;
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px;
+  align-items: center;
+  background-color: turquoise;
+  color: black;
 }
-.codesection {
-  background: #ba6bc80f;
+header > div {
+  display: block;
+  font-size: 24px;
 }
-footer a {
+nav {
+  display: flex;
+  gap: 12px;
+}
+nav > a {
   text-decoration: none;
-  color :aliceblue;
+  color: black;
+}
+.main {
+  padding: 30px 15px;
+}
+
+h1 h2 h3 {
+  font-family: Krona One;
+}
+.main{
+  margin-top: 10px;
 }
